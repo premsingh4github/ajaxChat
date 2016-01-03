@@ -51,7 +51,6 @@
 	if(isset($_POST['login'])){
 		$username = mysql_escape_string($_POST['username']);
 		$password = md5(mysql_escape_string($_POST['password']));
-		print_r($_POST);
 		if(@$msg->login($username,$password)['id'] > 0){
 
 			$_SESSION['m_simulate_login'] = $msg->login($username,$password)['id'] ;
@@ -60,6 +59,10 @@
 			header('Location: messages.php');
 			exit();
 		}
+		elseif (@$msg->login($username,$password) =='housefull') {
+			$error ="Chat room is full!Plz try later";
+		}
+		
 		else{
 			$login_error = 1;
 		}

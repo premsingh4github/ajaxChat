@@ -34,7 +34,6 @@
                            </div>
                            <?php
                          }
-
                         ?>
                       <?php
                         if(@$login_error){

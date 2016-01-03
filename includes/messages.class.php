@@ -995,6 +995,10 @@
 		}
 		public function login($username,$password){
 			global $db;
+			$query = $db->query("SELECT COUNT(*) as  count FROM $this->users_table WHERE session_status = 'online'");
+			if($db->fetch_row($query)['count'] > 10){
+				return 'housefull';
+			}
 			$query = $db->query("SELECT * FROM $this->users_table WHERE user_name = '$username' AND user_pw = '$password'");
 			$row = $db->fetch_row($query);
 			return $row;

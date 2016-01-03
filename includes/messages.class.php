@@ -767,10 +767,9 @@
 		public function add_message($user_id, $message)
 		{
 			global $db;
-			 ini_set('date.timezone', 'Asia/Kathmandu');
-			 $timestamp = time() - date('Z');;
+			ini_set('date.timezone', 'Asia/Kathmandu');
 			$query = $db->query(sprintf("INSERT INTO $this->messages_table SET message = '%s', user_id = %d, receiver = %d, storage_a = %d, storage_b = %d, time = %d, status = 'unread'", 
-						$db->escape(htmlspecialchars($message, ENT_QUOTES, 'UTF-8')), $db->escape($this->logged_user_id), $db->escape($user_id), $db->escape($this->logged_user_id), $db->escape($user_id), $timestamp
+						$db->escape(htmlspecialchars($message, ENT_QUOTES, 'UTF-8')), $db->escape($this->logged_user_id), $db->escape($user_id), $db->escape($this->logged_user_id), $db->escape($user_id), time()
 					));
 					
 			if($db->affected_rows($query) == 1)

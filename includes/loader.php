@@ -2,8 +2,6 @@
 	session_start();
 	
 	//error_reporting(0);
-	
-	
 	include('connection.php');
 
 	include('database.class.php');

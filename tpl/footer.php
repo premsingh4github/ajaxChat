@@ -2,7 +2,7 @@
 <div id="generalModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
-    	<div class="modal-header">
+      <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <h4 class="modal-title"></h4>
           </div>
@@ -22,8 +22,14 @@
 <script src="js/jquery.nicescroll.min.js" type="text/javascript"></script>
 <script src="js/jquery.uploadify.min.js" type="text/javascript"></script>
 <script src="js/lightbox.min.js" type="text/javascript"></script>
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
 <script src="js/jquery.messages.js" type="text/javascript"></script>
+<!-- for validator -->
+<script src="validator/js/formValidation.min.js"></script>
+
+<script src="validator/js/formValidationBootstrap.js"></script>
+
+<script src="validator/js/custom.js"></script>
 
 </body>
 </html>

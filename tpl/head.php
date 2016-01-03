@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <title>Ajax Chat System</title>
@@ -12,7 +12,9 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/messages.css" rel="stylesheet">
     <link href="css/uploadify.css" rel="stylesheet">
-	<script src="js/jquery.js" type="text/javascript"></script>
+    <!-- for validator -->
+    <link rel="stylesheet" type="text/css" href="validator/css/formValidation.min.css">
+    <script src="js/jquery.js" type="text/javascript"></script>
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

@@ -4,11 +4,8 @@
 	// Return a list of users (used on index.php page)
 	function get_users()
 	{
-		global $db;
-		
-		$query = $db->query("SELECT * FROM users");
-		
-		return $db->results($query);
+		global $msg;
+		return $msg->get_all_users();
 	}	
 	
 	// Return profile pic (used on messages.php)

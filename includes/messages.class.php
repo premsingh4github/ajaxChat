@@ -25,7 +25,8 @@
 		public $messages_table = 'messages';
 		
 		// Users Table
-		public $users_table = 'users';
+		//public $users_table = 'users';
+		public $users_table = 'c_user';
 		
 		// Friends Table
 		public $friends_table = 'friends';
@@ -281,27 +282,37 @@
 				return false;	
 			}
 		}
+		// get all users
+		function get_all_users()
+		{
+			global $db;
+			
+			$query = $db->query("SELECT * FROM $this->users_table");
+			
+			return $db->results($query);
+		}
 		
 		// Pull a list of contacts, using friends and all users approach
 		public function pull_contacts($user_id, $limit='', $counter='')
 		{
-			// if($this->friends_approach == true)
-			// {
-			// 	if($this->active_tab == 'chats' && $counter !== true)
-			// 	{
-			// 		return $this->get_chat_friends_list($user_id, $limit);
-			// 	} else {
-			// 		return $this->get_friends_list($user_id, $limit);
-			// 	}
-			// } else {
-			// 	if($this->active_tab == 'chats' && $counter !== true)
-			// 	{
-			// 		return $this->get_chat_friends_list($user_id, $limit);
-			// 	} else {
-			// 		return $this->get_users($user_id, $limit);
-			// 	}	
-			// }
-			return $this->get_users($user_id, $limit);
+			if($this->friends_approach == true)
+			{
+				if($this->active_tab == 'chats' && $counter !== true)
+				{
+					return $this->get_chat_friends_list($user_id, $limit);
+				} else {
+					//return $this->get_friends_list($user_id, $limit);
+					return $this->get_users($user_id, $limit);
+				}
+			} else {
+				if($this->active_tab == 'chats' && $counter !== true)
+				{
+					return $this->get_chat_friends_list($user_id, $limit);
+				} else {
+					return $this->get_users($user_id, $limit);
+				}	
+			}
+			//return $this->get_users($user_id, $limit);
 		}
 		
 		// Count your contacts

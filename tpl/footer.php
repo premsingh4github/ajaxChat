@@ -23,6 +23,7 @@
 <script src="js/jquery.uploadify.min.js" type="text/javascript"></script>
 <script src="js/lightbox.min.js" type="text/javascript"></script>
 <!-- <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+<script src="js/custom.js"></script>
 <script src="js/jquery.messages.js" type="text/javascript"></script>
 <!-- for validator -->
 <script src="validator/js/formValidation.min.js"></script>

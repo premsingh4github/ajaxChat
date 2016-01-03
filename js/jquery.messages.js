@@ -646,7 +646,6 @@ function realtime_chat()
 		
 		if(new_msg_id !== last_msg_id)
 		{
-			debugger
 			$("#text-messages").prepend(html);
 		}
 	})

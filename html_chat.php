@@ -126,8 +126,29 @@ if($account > 0)
                                     <span class="innerBox-right text-muted visible-xs"><?php echo $msg->format_date_default($message['time']); ?> </span>
                                 </div>
                                 <div class="media-body">
-                                    <a href="profile.php?id=<?php echo $message['user_id']; ?>" class="strong text-inverse"><?php echo $chat_name; ?></a><br />
-                                    <?php echo $msg->read_messages($message['message']); ?>
+                                    <?php
+                                        if($message['user_id'] == $msg->logged_user_id)
+                                        {
+                                            ?>
+                                        <a href="profile.php?id=<?php echo $message['user_id']; ?>" class="strong text-inverse"><?php echo $chat_name; ?></a><br />
+                                        <span id="<?php echo $message['id']; ?>" data-time="<?php echo $msg->format_date_default($message['time']); ?>" onclick="messageEdit(event)"><?php echo $msg->read_messages($message['message']); ?> </span>
+                                        <div class="editMessage" id="editMessage_<?php echo $message['id']; ?>"  >
+                                            <textarea id="message_<?php echo $message['id']; ?>" ><?php echo $msg->read_messages($message['message']); ?> </textarea>
+                                            <span data-receiver="<?php echo $message['receiver']; ?>" data-user="<?php echo $message['user_id']; ?>" data-id="<?php echo $message['id']; ?>" onclick="updateMessage(event)">ok</span>
+                                        </div>
+
+                                            <?php
+                                        }
+                                        else{
+                                            ?>
+                                            <a href="profile.php?id=<?php echo $message['user_id']; ?>" class="strong text-inverse"><?php echo $chat_name; ?></a><br />
+                                            <span id="<?php echo $message['id']; ?>" data-time="<?php echo $msg->format_date_default($message['time']); ?>"><?php echo $msg->read_messages($message['message']); ?> </span>
+                                            
+                                            <?php
+
+                                        } 
+                                    ?>
+                                    
                                 </div>
                             </div>
                         </div>	

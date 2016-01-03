@@ -36,3 +36,9 @@ body {
 .login{
 	margin-top: 50px;
 }
+#register{
+	display: none;
+}
+.editMessage{
+	display: none;
+}

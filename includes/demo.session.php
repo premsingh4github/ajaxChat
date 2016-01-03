@@ -17,6 +17,13 @@
 		header('Location: messages.php');
 		exit();	
 	}
+	// elseif (isset($_SESSION['m_simulate_login']) && basename($_SERVER['PHP_SELF']) !== 'messages.php') {
+	// 	$msg->logged_user_id = $_SESSION['m_simulate_login']; // This is important so it can record login data
+	// 	$msg->set_user_sessionStatus('online');
+	// 	header('Location: messages.php');
+	// 	exit();	
+	// }
+
 	
 	if(isset($_GET['logout']) && $_GET['logout'] == true)
 	{ 
@@ -28,6 +35,35 @@
 			setcookie(session_name(), '', time() - 3600);	
 		}
 		session_destroy();
+	}
+	if(isset($_POST['register'])){
+		$user_name = mysql_escape_string($_POST['username']);
+		$user_email = mysql_escape_string($_POST['email']);
+		$user_pw = md5(mysql_escape_string($_POST['password']));
+		$display_name = mysql_escape_string($_POST['display_name']);
+		$sql = "INSERT INTO c_user (user_name,user_email, user_pw,display_name) VALUES ('$user_name','$user_email','$user_pw','$display_name')";
+		 if($db->query($sql)){
+		 	$success = "Your registration success";
+		 }else{
+		 	$error = $db->error();
+		 }
+	}
+	if(isset($_POST['login'])){
+		$username = mysql_escape_string($_POST['username']);
+		$password = md5(mysql_escape_string($_POST['password']));
+		print_r($_POST);
+		if(@$msg->login($username,$password)['id'] > 0){
+
+			$_SESSION['m_simulate_login'] = $msg->login($username,$password)['id'] ;
+			$msg->logged_user_id = $_SESSION['m_simulate_login']; // This is important so it can record login data
+			$msg->set_user_sessionStatus('online');
+			header('Location: messages.php');
+			exit();
+		}
+		else{
+			$login_error = 1;
+		}
+		
 	}
 	
 ?>

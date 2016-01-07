@@ -135,7 +135,7 @@ if($account > 0)
                                         <span id="<?php echo $message['id']; ?>" data-time="<?php echo $msg->format_date_default($message['time']); ?>" onclick="messageEdit(event)"><?php echo $msg->read_messages($message['message']); ?> </span>
                                         <div class="editMessage" id="editMessage_<?php echo $message['id']; ?>"  >
                                             <textarea id="message_<?php echo $message['id']; ?>" ><?php echo $msg->read_messages($message['message']); ?> </textarea>
-                                            <span data-receiver="<?php echo $message['receiver']; ?>" data-user="<?php echo $message['user_id']; ?>" data-id="<?php echo $message['id']; ?>" onclick="updateMessage(event)">ok</span>
+                                            <button type="button" class="btn btn-primary" data-receiver="<?php echo $message['receiver']; ?>" data-user="<?php echo $message['user_id']; ?>" data-id="<?php echo $message['id']; ?>" onclick="updateMessage(event)">Update</button>
                                         </div>
 
                                             <?php

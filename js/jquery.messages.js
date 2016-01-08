@@ -142,10 +142,48 @@
 		}
 		return false;		
 	});
+	$("#text-messages-request").keyup("textarea.type-a-message-box",function(e){
+    if((e.keyCode || e.which) == 13) { //Enter keycode
+    	var ID = $("textarea.type-a-message-box").attr("id");
+		var URL = $.base_url + 'ajax/add_chat_ajax.php'; 
+		
+		
+		$('div.message-btn-target').html('<a href="#" id="'+ID+'" class="btn btn-default btn-sm send-message"><i class="glyphicon glyphicon-send"></i> '+$.sendButton+'</a>');
+		$('#type-a-message').remove();	
+		 
+		send_message(ID, URL);
+		
+		$(this).on('blur', function() {
+			stop_type_status();	
+		});
+		
+		// Input Handler
+		if($.enterIsSend == true)
+		{
+			$(this).keypress(function(e)
+			{
+				if(e.which == 13)
+				{
+					send_message(ID, URL);
+				}
+			});
+			
+			$("a.send-message").on("click", function() {
+				send_message(ID, URL);	
+			});
+			
+		} else {
+			$("a.send-message").on("click", function() {
+				send_message(ID, URL);	
+			});
+		}
+		return false;
+     }
+    });
 	
 	function send_message(ID, URL)
 	{
-		var textarea = $('textarea.type-a-message-box').val();
+		var textarea = $.trim($('textarea.type-a-message-box').val());
 		if ($.trim(textarea).length == 0) 
 		{
 			alert($.emptyBox);

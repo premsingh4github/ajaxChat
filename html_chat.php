@@ -128,7 +128,7 @@ if($account > 0)
                                 <div class="media-body">
                                     <?php
                                         ini_set('date.timezone', 'Asia/Kathmandu');
-                                        if(($message['user_id'] == $msg->logged_user_id) && ( (time() - $message['time'])/60 < 5  ))
+                                        if(($message['user_id'] == $msg->logged_user_id) && ( (time() - $message['time'])/60 < 15  ))
                                         {
                                             ?>
                                         <a href="profile.php?id=<?php echo $message['user_id']; ?>" class="strong text-inverse"><?php echo $chat_name; ?></a><br />

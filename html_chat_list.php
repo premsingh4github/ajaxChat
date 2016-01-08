@@ -101,7 +101,7 @@
                 <?php
 					if(isset($chat_tab))
 					{
-						echo '<p>'.$msg->get_the_last_message($friend_id).'</p>';
+						echo "<p class='lastMessage' data-message='".$msg->get_the_last_message($friend_id)['id']."'>".$msg->get_the_last_message($friend_id)['message'].'</p>';
 					} else {
 						echo '<p>'.$msg->user_profile_status($friend_id, 'TRUNCATE').'</p>';	
 					}

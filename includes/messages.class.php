@@ -460,7 +460,9 @@
 			{
 				if($option == "TRUNCATE")
 				{
-					return $this->truncate($result['message'], $this->word_limit);		
+					//return $this->truncate($result['message'], $this->word_limit);
+					// changed by prem singh
+					return 	$result;	
 				} else {
 					return $row;
 				}	

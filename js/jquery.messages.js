@@ -183,7 +183,9 @@
 	
 	function send_message(ID, URL)
 	{
+
 		var textarea = $.trim($('textarea.type-a-message-box').val());
+		debugger;
 		if ($.trim(textarea).length == 0) 
 		{
 			alert($.emptyBox);
@@ -653,7 +655,17 @@ function refresh_chats()
 		success: function(html) {
 			if($('#tab-chats').hasClass('active-tab'))
 			{ 
+				var old = $( ".lastMessage" ).first().text();
 				$("#messages-stack-list").html(html);
+				var newMessage = $( ".lastMessage" ).first().text();
+				if(old !== newMessage){
+					var Id = $( ".lastMessage" ).first().attr('data-message');
+					var div = $('#' + parseInt($( ".lastMessage" ).first().attr('data-message'))) ;
+					if(div != undefined){
+						div.text(newMessage);
+					}
+				}
+
 				if($.newChat !== undefined)
 				{
 					$("#no_chat_users_found").remove();
@@ -681,9 +693,9 @@ function realtime_chat()
 	$.post(URL, dataString, function(html) {
 		var html_response = $(html);
 		var new_msg_id = html_response.attr("id");
-		
 		if(new_msg_id !== last_msg_id)
 		{
+			
 			$("#text-messages").prepend(html);
 		}
 	})

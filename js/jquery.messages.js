@@ -150,8 +150,41 @@
 		
 		$('div.message-btn-target').html('<a href="#" id="'+ID+'" class="btn btn-default btn-sm send-message"><i class="glyphicon glyphicon-send"></i> '+$.sendButton+'</a>');
 		$('#type-a-message').remove();	
-		 
-		send_message(ID, URL);
+		 if(e.target.classList.length == 0){
+		 	debugger;
+		 	var message_id = e.target.nextElementSibling.attributes['data-id'].value;
+		 	var receiver_id = e.target.nextElementSibling.attributes['data-receiver'].value;
+		 	if(document.getElementById(message_id).innerHTML === $('textarea#message_' + message_id).val()){
+		 	}
+		 	else{
+		 		var URL = $.base_url + 'ajax/update_message.php'; 
+		 		var user = e.target.nextElementSibling.attributes['data-user'].value;
+		 		$.ajax({
+		 			type: "POST",
+		 			url: URL,
+		 			data: {ID: receiver_id, message_id :message_id, message: $.trim($('textarea#message_' + message_id).val())},
+		 			cache: false,
+		 			beforeSend: function() {
+		 			 $('#loadingDiv').show();
+		 			},
+		 			error: function() { $('#loadingDiv').hide(); $('#errorDiv').html('<p>'+$.ajaxError+'</p>'); },
+		 			success: function(html) {
+		 				$('#loadingDiv').hide();
+		 				$("p.no-messages").remove();
+		 				$("#text-messages-request").html(html);
+		 				//$("#text-messages").attr("rel", user);
+		 				//stop_type_status();
+		 			}
+		 		});
+		 	}
+		 	document.getElementById(message_id).innerHTML = $('textarea#message_' + message_id).val();
+		 	document.getElementById(message_id).style.display = 'block';
+		 	document.getElementById('editMessage_'+message_id ).style.display = "none";
+		 	debugger
+		 }
+		 else{
+		 	send_message(ID, URL);
+		 }
 		
 		$(this).on('blur', function() {
 			stop_type_status();	
@@ -185,7 +218,6 @@
 	{
 
 		var textarea = $.trim($('textarea.type-a-message-box').val());
-		debugger;
 		if ($.trim(textarea).length == 0) 
 		{
 			alert($.emptyBox);
